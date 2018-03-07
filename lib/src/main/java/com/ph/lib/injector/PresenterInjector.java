@@ -17,6 +17,13 @@ import com.ph.lib.mvp.IPresenter;
 
 public class PresenterInjector {
 
+    /**
+     * 获取activity中的presenter
+     *
+     * @param activity
+     * @param <V>
+     * @return
+     */
     public static <V> IPresenter<V> inject(BaseActivity activity) {
         Presenter annotation = activity.getClass().getAnnotation(Presenter.class);
         if (annotation == null) {
@@ -30,6 +37,13 @@ public class PresenterInjector {
         return presenter;
     }
 
+    /**
+     * 获取fragment中的presenter
+     *
+     * @param fragment
+     * @param <V>
+     * @return
+     */
     public static <V> IPresenter<V> inject(BaseFragment fragment) {
         Presenter annotation = fragment.getClass().getAnnotation(Presenter.class);
         if (annotation == null) {

@@ -8,6 +8,7 @@ import java.nio.MappedByteBuffer;
  * 公司： TT
  * Programmer: 潘浩
  * 时间： 18-3-5
+ * 基本Presenter基类
  */
 
 public class Presenter<V> implements IPresenter<V> {

@@ -25,9 +25,20 @@ android {
 }
 
 dependencies {
-    compile project (':lib')
+    //对基础mvp库的依赖
+    compile project(':lib')
+
+    //对glide的依赖
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+
+    //Retrofit gson
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //log 拦截器
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

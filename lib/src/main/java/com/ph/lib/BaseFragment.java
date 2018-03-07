@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ph.lib.factory.MVPFactory;
+import com.ph.lib.injector.PresenterInjector;
 import com.ph.lib.injector.ViewInjector;
 import com.ph.lib.mvp.IPresenter;
 
@@ -35,9 +37,25 @@ public class BaseFragment<P extends IPresenter<V>, V> extends Fragment {
             view = ViewInjector.inject(this, inflater);
             Cache.put(this.getClass().getName(), view);
             unbinder = ButterKnife.bind(this, view);
+            mPresenter = PresenterInjector.inject(this);
+            firstInit(view);
         }
+        refreshInit(view);
         return view;
     }
+
+    /**
+     * 第一次view为空时加载
+     * @param view
+     */
+    protected void firstInit(View view) {}
+
+    /**
+     * 每次onCreateView时加载
+     * @param view
+     */
+    private void refreshInit(View view) {}
+
 
     @Override
     public void onDestroy() {

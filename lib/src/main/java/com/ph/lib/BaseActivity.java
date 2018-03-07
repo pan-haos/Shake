@@ -44,12 +44,18 @@ public class BaseActivity<T, V> extends AppCompatActivity {
          */
         mPresenter = PresenterInjector.inject(this);
         mPresenter.attach((V) this);
+
+        /**
+         *程序入口
+         */
+        init();
     }
 
     /**
      * Activity启动入口，需要则重写
      */
-    protected void init(){}
+    protected void init() {
+    }
 
 
     @Override
