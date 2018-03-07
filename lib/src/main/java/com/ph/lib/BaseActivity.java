@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.ph.lib.injector.PresenterInjector;
 import com.ph.lib.injector.ViewInjector;
 import com.ph.lib.mvp.IPresenter;
+import com.ph.lib.mvp.Presenter;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +19,7 @@ import butterknife.Unbinder;
  * 时间： 18-3-5
  */
 
-public class BaseActivity<T, V> extends AppCompatActivity {
+public class BaseActivity<T extends Presenter<V>, V> extends AppCompatActivity {
 
     protected IPresenter<V> mPresenter;
 

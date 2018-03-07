@@ -3,6 +3,7 @@ package com.ph.service.api;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -15,14 +16,22 @@ public class ApiService {
 
     private static final ApiService API_SERVICE = new ApiService();
 
+    private static final String IP = "http://192.168.1.101:80";
+
     private Api Api;
 
     private ApiService() {
 
         /**
+         * 添加OkHttp log日志拦截器
+         */
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+
+        /**
          * 构建OkHttp Client
          */
         OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(10, TimeUnit.SECONDS)
@@ -33,7 +42,7 @@ public class ApiService {
          */
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("")
+                .baseUrl(IP)
                 .client(client)
                 .build();
 
@@ -50,6 +59,5 @@ public class ApiService {
     public Api getApi() {
         return Api;
     }
-
 
 }

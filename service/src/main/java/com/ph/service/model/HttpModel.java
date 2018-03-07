@@ -66,8 +66,8 @@ public abstract class HttpModel<T> implements IModel {
     /**
      * 获取Api
      *
-     * @param api
-     * @return
+     * @param api Retrofit 提供的api
+     * @return call对象
      */
-    protected abstract Call<T> getCall(Api api);
+    abstract Call<T> getCall(Api api);
 }
