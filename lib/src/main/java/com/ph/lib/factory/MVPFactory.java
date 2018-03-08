@@ -18,19 +18,17 @@ public class MVPFactory {
      * 创建Presenter对象
      *
      * @param source
-     * @param <V>
      * @return
      */
-    public static <V> IPresenter createPresenter(Class<? extends Presenter<V>> source) {
+    public static IPresenter createPresenter(Class<? extends Presenter> source) {
         try {
-            Presenter<V> presenter = source.newInstance();
+            Presenter presenter = source.newInstance();
             return presenter;
         } catch (InstantiationException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("can't init presenter");
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("can't init presenter");
         }
-        throw new IllegalStateException("can't create a presenter by source");
     }
 
 

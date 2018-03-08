@@ -21,18 +21,15 @@ public class PresenterInjector {
      * 获取activity中的presenter
      *
      * @param activity
-     * @param <V>
      * @return
      */
-    public static <V> IPresenter<V> inject(BaseActivity activity) {
+    public static IPresenter inject(BaseActivity activity) {
         Presenter annotation = activity.getClass().getAnnotation(Presenter.class);
         if (annotation == null) {
             throw new NullPointerException("activity's annotation presenter can't be null");
         }
         Class<? extends com.ph.lib.mvp.Presenter> value = annotation.value();
-        if (value == null) {
-            throw new NullPointerException("presenter can't be null");
-        }
+
         IPresenter presenter = MVPFactory.createPresenter(value);
         return presenter;
     }
@@ -41,18 +38,14 @@ public class PresenterInjector {
      * 获取fragment中的presenter
      *
      * @param fragment
-     * @param <V>
      * @return
      */
-    public static <V> IPresenter<V> inject(BaseFragment fragment) {
+    public static IPresenter inject(BaseFragment fragment) {
         Presenter annotation = fragment.getClass().getAnnotation(Presenter.class);
         if (annotation == null) {
             throw new NullPointerException("fragment's annotation presenter can't be null");
         }
         Class<? extends com.ph.lib.mvp.Presenter> value = annotation.value();
-        if (value == null) {
-            throw new NullPointerException("presenter can't be null");
-        }
         IPresenter presenter = MVPFactory.createPresenter(value);
         return presenter;
     }

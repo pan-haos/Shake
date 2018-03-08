@@ -16,12 +16,12 @@ public class SocketManger {
     /**
      * Socket 池
      */
-    public static final List<Socket> SOCKET_POOL = new ArrayList<>();
+    private static final List<Socket> SOCKET_POOL = new ArrayList<>();
 
     /**
      * 池的最大Socket数
      */
-    public static final int POOL_SIZE = 5;
+    private static final int POOL_SIZE = 5;
 
     /**
      * 初始化SocketPool
@@ -36,20 +36,19 @@ public class SocketManger {
     /**
      * 从池取出
      *
-     * @return
+     * @return Socket
      */
     public static synchronized Socket get() {
         if (SOCKET_POOL.isEmpty()) return null;
-        Socket remove = SOCKET_POOL.remove(0);
-        return remove;
+        return SOCKET_POOL.remove(0);
     }
 
     /**
      * 返回池
      *
-     * @param socket
+     * @param socket Socket
      */
-    public static void turnBack(Socket socket) {
+    public static synchronized void turnBack(Socket socket) {
         if (!SOCKET_POOL.contains(socket)) {
             SOCKET_POOL.add(socket);
         }

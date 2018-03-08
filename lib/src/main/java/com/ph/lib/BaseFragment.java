@@ -22,9 +22,9 @@ import butterknife.Unbinder;
  * Programmer: 潘浩
  * 时间： 18-3-5
  */
-public class BaseFragment<P extends IPresenter<V>, V> extends Fragment {
+public class BaseFragment<T extends IPresenter<V>, V> extends Fragment {
 
-    protected IPresenter<V> mPresenter;
+    protected T mPresenter;
 
     private Unbinder unbinder;
 
@@ -37,7 +37,7 @@ public class BaseFragment<P extends IPresenter<V>, V> extends Fragment {
             view = ViewInjector.inject(this, inflater);
             Cache.put(this.getClass().getName(), view);
             unbinder = ButterKnife.bind(this, view);
-            mPresenter = PresenterInjector.inject(this);
+            mPresenter = (T) PresenterInjector.inject(this);
             firstInit(view);
         }
         refreshInit(view);
@@ -46,15 +46,19 @@ public class BaseFragment<P extends IPresenter<V>, V> extends Fragment {
 
     /**
      * 第一次view为空时加载
+     *
      * @param view
      */
-    protected void firstInit(View view) {}
+    protected void firstInit(View view) {
+    }
 
     /**
      * 每次onCreateView时加载
+     *
      * @param view
      */
-    private void refreshInit(View view) {}
+    private void refreshInit(View view) {
+    }
 
 
     @Override

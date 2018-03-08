@@ -21,7 +21,7 @@ import butterknife.Unbinder;
 
 public class BaseActivity<T extends Presenter<V>, V> extends AppCompatActivity {
 
-    protected IPresenter<V> mPresenter;
+    protected T mPresenter;
 
     private Unbinder bind;
 
@@ -43,7 +43,8 @@ public class BaseActivity<T extends Presenter<V>, V> extends AppCompatActivity {
         /**
          * 创建并绑定到Presenter
          */
-        mPresenter = PresenterInjector.inject(this);
+        mPresenter = (T) PresenterInjector.inject(this);
+
         mPresenter.attach((V) this);
 
         /**
