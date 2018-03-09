@@ -1,4 +1,4 @@
-package com.ph.shake.ui.home;
+package com.ph.shake.ui.activity.home;
 
 import com.ph.lib.mvp.Presenter;
 

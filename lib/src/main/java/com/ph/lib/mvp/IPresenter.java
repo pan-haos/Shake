@@ -28,4 +28,6 @@ public interface IPresenter<V> {
      */
     V get();
 
+    boolean isAttach();
+
 }

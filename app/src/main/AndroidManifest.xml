@@ -14,13 +14,17 @@
 
         </activity>
 
-        <activity android:name=".ui.login.LoginActivity">
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
+            android:theme="@style/BlackTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.activity.home.HomeActivity" />
 
     </application>
 

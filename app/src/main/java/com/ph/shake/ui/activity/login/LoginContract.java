@@ -1,4 +1,4 @@
-package com.ph.shake.ui.login;
+package com.ph.shake.ui.activity.login;
 
 /**
  * 项目： Shake

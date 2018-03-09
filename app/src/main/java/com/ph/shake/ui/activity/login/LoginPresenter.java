@@ -1,10 +1,10 @@
-package com.ph.shake.ui.login;
+package com.ph.shake.ui.activity.login;
+
 
 import android.util.Log;
 
 import com.ph.lib.mvp.Presenter;
 
-import static android.content.ContentValues.TAG;
 
 /**
  * 项目： Shake
@@ -14,13 +14,22 @@ import static android.content.ContentValues.TAG;
  */
 
 public class LoginPresenter extends Presenter<ILoginView> implements LoginContract {
+
+    private static final String TAG = LoginPresenter.class.getSimpleName();
+
     @Override
     public void login() {
-        Log.e(TAG, "login: 登錄");
+        if (isAttach()) {
+            Log.e(TAG, "login:登录中 ");
+        }
     }
 
     @Override
     public void register() {
+        if (isAttach()) {
 
+        }
     }
+
+
 }

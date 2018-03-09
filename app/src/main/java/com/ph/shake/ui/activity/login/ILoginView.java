@@ -1,4 +1,4 @@
-package com.ph.shake.ui.login;
+package com.ph.shake.ui.activity.login;
 
 /**
  * 项目： Shake
@@ -9,8 +9,6 @@ package com.ph.shake.ui.login;
 
 public interface ILoginView {
 
-    void login(String userName, String pwd);
-
-    void register();
+    void goHome();
 
 }

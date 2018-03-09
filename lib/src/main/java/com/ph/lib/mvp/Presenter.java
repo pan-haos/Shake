@@ -17,7 +17,7 @@ public class Presenter<V> implements IPresenter<V> {
 
     @Override
     public void attach(V view) {
-        mView = new WeakReference<V>(view);
+        mView = new WeakReference<>(view);
     }
 
     @Override
@@ -33,6 +33,11 @@ public class Presenter<V> implements IPresenter<V> {
     @Override
     public V get() {
         return mView != null && mView.get() != null ? mView.get() : null;
+    }
+
+    @Override
+    public boolean isAttach() {
+        return mView != null && mView.get() != null;
     }
 
 }

@@ -23,7 +23,11 @@ android {
 }
 
 dependencies {
-
+    // 引入Material Design 组件
+    compile 'com.android.support:design:26.1.0'
+    // 引入CardView
+    compile 'com.android.support:cardview-v7:26.1.0'
+    // 引入service组件
     compile project(':service')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
