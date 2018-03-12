@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:gravity="center">
 
     <android.support.v7.widget.CardView
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
                 android:layout_marginTop="40dp"
-                android:text="登录账号"
+                android:text="@string/forget_pwd"
                 android:textAllCaps="true"
                 android:textSize="20sp" />
 
@@ -40,7 +40,7 @@
                     android:id="@+id/username_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/account"
+                    android:hint="账号"
                     android:textColorHint="@color/gray"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
@@ -65,7 +65,7 @@
                     android:id="@+id/pwd_wrapper"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pwd"
+                    android:hint="密码"
                     android:textColorHint="@color/gray"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     app:passwordToggleEnabled="true">
@@ -89,7 +89,7 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <Button
-                    android:id="@+id/login_btn"
+                    android:id="@+id/forget_btn"
                     style="@style/Button.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="30dp"
                     android:padding="10dp"
-                    android:text="@string/login_account"
+                    android:text="确认"
                     android:textSize="18dp" />
             </LinearLayout>
 
@@ -108,21 +108,24 @@
                 android:layout_margin="35dp">
 
                 <TextView
-                    android:id="@+id/login_change_pwd"
+                    android:id="@+id/forget_register_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="@string/change_pwd" />
+                    android:text="@string/register_account" />
 
                 <TextView
-                    android:id="@+id/login_register"
+                    android:id="@+id/forget_login_account"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="@string/register_account" />
+                    android:text="@string/login_account" />
+
             </RelativeLayout>
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+
 </LinearLayout>

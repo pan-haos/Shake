@@ -1,7 +1,5 @@
 package com.ph.lib.injector;
 
-import android.app.Activity;
-import android.support.v4.app.Fragment;
 
 import com.ph.lib.BaseActivity;
 import com.ph.lib.BaseFragment;
@@ -20,8 +18,8 @@ public class PresenterInjector {
     /**
      * 获取activity中的presenter
      *
-     * @param activity
-     * @return
+     * @param activity activity
+     * @return activity 中的presenter
      */
     public static IPresenter inject(BaseActivity activity) {
         Presenter annotation = activity.getClass().getAnnotation(Presenter.class);
@@ -29,7 +27,6 @@ public class PresenterInjector {
             throw new NullPointerException("activity's annotation presenter can't be null");
         }
         Class<? extends com.ph.lib.mvp.Presenter> value = annotation.value();
-
         IPresenter presenter = MVPFactory.createPresenter(value);
         return presenter;
     }
@@ -37,8 +34,8 @@ public class PresenterInjector {
     /**
      * 获取fragment中的presenter
      *
-     * @param fragment
-     * @return
+     * @param fragment fragment
+     * @return 返回结果
      */
     public static IPresenter inject(BaseFragment fragment) {
         Presenter annotation = fragment.getClass().getAnnotation(Presenter.class);
@@ -49,6 +46,7 @@ public class PresenterInjector {
         IPresenter presenter = MVPFactory.createPresenter(value);
         return presenter;
     }
+
 
 }
 

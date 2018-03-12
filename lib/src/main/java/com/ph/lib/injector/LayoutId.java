@@ -13,6 +13,6 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ContentView {
+public @interface LayoutId {
     int value() default -1;
 }

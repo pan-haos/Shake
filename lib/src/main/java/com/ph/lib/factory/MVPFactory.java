@@ -20,16 +20,18 @@ public class MVPFactory {
      * @param source
      * @return
      */
-    public static IPresenter createPresenter(Class<? extends Presenter> source) {
+    public static <V> IPresenter<V> createPresenter(Class<? extends Presenter> source) {
+        IPresenter<V> presenter;
         try {
-            Presenter presenter = source.newInstance();
-            return presenter;
+            presenter = source.newInstance();
         } catch (InstantiationException e) {
             throw new IllegalStateException("can't init presenter");
         } catch (IllegalAccessException e) {
             throw new IllegalStateException("can't init presenter");
         }
+        return presenter;
     }
+
 
 
 }
