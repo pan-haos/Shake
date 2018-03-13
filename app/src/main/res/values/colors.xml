@@ -9,4 +9,33 @@
     <color name="light_gray">#DBDBDB</color>
     <color name="shadow">#D0D8DC</color>
     <color name="black_effective">#2A2A2A</color>
+
+
+    <!--Material design 风格配色  deep orange-->
+
+    <!--应用程序主题色 一般做导航栏-->
+    <color name="primary">#FF5722</color>
+
+    <!--深主题色，一般做标题栏色-->
+    <color name="primary_dark">#E64A19</color>
+
+    <!--淡主题色-->
+    <color name="primary_light">#FFCCBC</color>
+
+    <!--强调色 一般画龙点睛强调点-->
+    <color name="accent">#00BCD4</color>
+
+    <!--主字体颜色-->
+    <color name="primary_text">#212121</color>
+
+    <!--副字体颜色  一般做二级标题-->
+    <color name="secondary_text">#757575</color>
+
+    <!--图标 字体颜色（对比色）-->
+    <color name="icons">#FFFFFF</color>
+
+    <!--分割线颜色-->
+    <color name="divider">#BDBDBD</color>
+
+
 </resources>

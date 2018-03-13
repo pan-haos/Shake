@@ -1,6 +1,7 @@
 package com.ph.shake.ui.fragment.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,8 @@ import com.ph.lib.BaseFragment;
 import com.ph.lib.injector.LayoutId;
 import com.ph.lib.injector.Presenter;
 import com.ph.shake.R;
+import com.ph.shake.ui.activity.home.HomeActivity;
+import com.ph.shake.ui.activity.home.IHomeView;
 import com.ph.shake.ui.activity.login.LoginActivity;
 
 import java.util.regex.Matcher;
@@ -29,7 +32,7 @@ import butterknife.OnClick;
 
 @LayoutId(R.layout.fragment_login)
 @Presenter(LoginPresenter.class)
-public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> {
+public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> implements ILoginView {
 
     // 邮箱的正则表达式
     private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
@@ -110,4 +113,10 @@ public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> {
         }
     }
 
+
+    @Override
+    public void goHome() {
+        Intent intent = new Intent(this.getContext(), HomeActivity.class);
+        startActivity(intent);
+    }
 }

@@ -13,7 +13,7 @@ import android.widget.Scroller;
 
 public class SlowScroller extends Scroller {
 
-    private static final int DURATIONS = 1500;
+    private static final int DURATIONS = 1000;
 
     public SlowScroller(Context context) {
         super(context);

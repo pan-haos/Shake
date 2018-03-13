@@ -5,8 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.widget.Scroller;
 
-import com.ph.shake.transform.AnimateTransForm;
-import com.ph.shake.transform.ZoomOutTransformer;
+import com.ph.shake.transform.RotateUpTransformer;
 
 import java.lang.reflect.Field;
 
@@ -32,7 +31,7 @@ public class SlowViewPager extends ViewPager {
     }
 
     private void initAnimation() {
-        this.setPageTransformer(true, new ZoomOutTransformer());
+        this.setPageTransformer(true, new RotateUpTransformer());
     }
 
     private void initScroller(Context context) {
@@ -48,5 +47,8 @@ public class SlowViewPager extends ViewPager {
         }
     }
 
-
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+    }
 }

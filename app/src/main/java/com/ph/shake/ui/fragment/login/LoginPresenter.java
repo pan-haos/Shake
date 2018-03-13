@@ -20,7 +20,7 @@ public class LoginPresenter extends Presenter<ILoginView> implements LoginContra
     @Override
     public void login() {
         if (isAttach()) {
-            Log.e(TAG, "login:登录中 ");
+            mView.get().goHome();
         }
     }
 
