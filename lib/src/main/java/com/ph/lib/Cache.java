@@ -28,6 +28,9 @@ public class Cache {
      * @param view
      */
     public static void put(String name, View view) {
+        if (mCache == null) {
+            mCache = new LruCache<>((int) (Runtime.getRuntime().totalMemory() / 8));
+        }
         mCache.put(name, view);
     }
 

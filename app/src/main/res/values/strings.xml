@@ -11,4 +11,9 @@
     <string name="ensure_pwd">确认密码</string>
     <string name="forget_pwd">忘记密码</string>
 
+    <!--HomeActivity 资源-->
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+
+
 </resources>

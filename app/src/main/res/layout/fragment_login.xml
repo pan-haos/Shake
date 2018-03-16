@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/account"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/primary"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout">
 
                     <android.support.design.widget.TextInputEditText
@@ -68,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/pwd"
-                    android:textColorHint="@color/gray"
+                    android:textColorHint="@color/primary"
                     app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                     app:passwordToggleEnabled="true">
 
@@ -92,8 +92,9 @@
 
 
                 <Button
-                    style="@style/Button.Primary"
                     android:id="@+id/login_btn"
+                    style="@style/Button.Primary"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -115,14 +116,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:text="@string/change_pwd" />
+                    android:text="@string/change_pwd"
+                    android:textColor="@color/primary" />
 
                 <TextView
                     android:id="@+id/login_register"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="@string/register_account" />
+                    android:text="@string/register_account"
+                    android:textColor="@color/primary" />
             </RelativeLayout>
 
         </LinearLayout>

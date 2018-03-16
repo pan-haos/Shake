@@ -9,7 +9,7 @@ import com.ph.lib.mvp.Callback;
  * Programmer: 潘浩
  * 时间： 18-3-7
  * <p>
- * 桥梁类---------起桥接作用
+ * 桥梁类---------起桥接作用,桥接 model 进行callback回调
  */
 
 public interface Implementor<T> {

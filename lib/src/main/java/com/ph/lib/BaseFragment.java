@@ -76,6 +76,7 @@ public class BaseFragment<T extends IPresenter<V>, V> extends Fragment {
         //移除内存缓存
         String name = getClass().getName();
         if (Cache.get(name) != null) {
+            Log.e(TAG, "onDestroy: 内存缓存移除了" + name);
             Cache.remove(name);
         }
         //移除Butterknife绑定

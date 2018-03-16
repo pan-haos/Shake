@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import com.ph.lib.BaseActivity;
@@ -87,4 +88,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> {
         viewPager.setCurrentItem(index, true);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("ph", "onDestroy: homeactivity");
+    }
 }
