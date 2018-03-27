@@ -38,7 +38,6 @@ import com.ph.shake.R;
 import com.ph.shake.manager.SpManager;
 
 
-
 /**
  * 项目： Shake
  * 公司： TT
@@ -171,7 +170,6 @@ public class HomeActivity extends BaseActivity<HomePresenter, IHomeView> impleme
         //添加 marker 标记
         LatLng latLng = new LatLng(39.906901, 116.397972);
         final Marker marker = map.addMarker(new MarkerOptions().position(latLng).title("北京").snippet("DefaultMarker"));
-
     }
 
     private void initUISetting() {
