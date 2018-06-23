@@ -1,11 +1,13 @@
 package com.ph.service.model;
 
 
+import android.util.Log;
+
 import com.ph.lib.mvp.Callback;
 import com.ph.lib.mvp.IModel;
-import com.ph.service.implementor.Implementor;
 import com.ph.service.api.Api;
 import com.ph.service.api.ApiService;
+import com.ph.service.implementor.Implementor;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -41,11 +43,31 @@ public abstract class HttpModel<T> implements IModel {
         call.enqueue(new retrofit2.Callback<T>() {
             @Override
             public void onResponse(Call<T> call, Response<T> response) {
-                T body = response.body();
-                /**
-                 *  这里handler的原因是因为可能需要根据服务器返回内容决定进入OnSuccess还是OnFail回调中
-                 */
-                implementor.handlerBody(callback, body);
+
+                Log.e("ph", "onResponse: Http请求收到响应");
+
+                if (response.isSuccessful()) {
+                    T body = response.body();
+
+
+                    int code = response.code();
+
+                    boolean successful = response.isSuccessful();
+
+
+                    Log.e("ph", "onResponse: body" + body + " code" + code + successful);
+                    /**
+                     *  这里handler的原因是因为可能需要根据服务器返回内容决定进入OnSuccess还是OnFail回调中
+                     */
+                    implementor.handlerBody(callback, body);
+                } else {
+                    int code = response.code();
+                    if (code == 404) {
+                        callback.onFail("找不到请求路径404");
+                    }
+                }
+
+
             }
 
             @Override
@@ -69,5 +91,5 @@ public abstract class HttpModel<T> implements IModel {
      * @param api Retrofit 提供的api
      * @return call对象
      */
-    abstract Call<T> getCall(Api api);
+    public abstract Call<T> getCall(Api api);
 }

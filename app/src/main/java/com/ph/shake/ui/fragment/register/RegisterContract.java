@@ -12,6 +12,6 @@ public interface RegisterContract {
     /**
      * 注册
      */
-    void register();
+    void register(String userName,String pwd);
 
 }

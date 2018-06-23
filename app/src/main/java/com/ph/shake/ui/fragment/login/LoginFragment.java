@@ -1,9 +1,10 @@
 package com.ph.shake.ui.fragment.login;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -13,12 +14,10 @@ import com.ph.lib.injector.LayoutId;
 import com.ph.lib.injector.Presenter;
 import com.ph.shake.R;
 import com.ph.shake.ui.activity.home.HomeActivity;
-import com.ph.shake.ui.activity.home.IHomeView;
 import com.ph.shake.ui.activity.login.LoginActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 
 import butterknife.OnClick;
 
@@ -45,6 +44,8 @@ public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> impl
     EditText etUserName;
     EditText etPwd;
 
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void firstInit(View view) {
@@ -59,25 +60,10 @@ public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> impl
         hideKeyboard();
         String userName = etUserName.getText().toString();
         String pwd = etPwd.getText().toString();
-        //email 校验不通过
-        if (!isEmail(userName)) {
-            userNameWrapper.setError("用户名非邮箱");
-        } else {
-            userNameWrapper.setErrorEnabled(false);
-        }
-
-        // pwd 校验不通过
-        if (!isPwd(pwd)) {
-            pwdWrapper.setError("密码长度不得小于6位");
-        } else {
-            pwdWrapper.setErrorEnabled(false);
-        }
-
-        //校验均通过
-        if (isEmail(userName) && isPwd(pwd)) {
-            mPresenter.login();
-        }
-
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("加载中...");
+        progressDialog.show();
+        mPresenter.login(userName, pwd);
     }
 
     @OnClick(R.id.login_change_pwd)
@@ -98,6 +84,11 @@ public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> impl
         return matcher.matches();
     }
 
+    public boolean isUserName(String userName) {
+        return userName.trim().length() >= 6;
+    }
+
+
     public boolean isPwd(String pwd) {
         return pwd.trim().length() >= 6;
     }
@@ -113,10 +104,38 @@ public class LoginFragment extends BaseFragment<LoginPresenter, ILoginView> impl
         }
     }
 
-
     @Override
     public void goHome() {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
         Intent intent = new Intent(this.getContext(), HomeActivity.class);
         startActivity(intent);
+        if (this.getActivity() != null) {
+            this.getActivity().finish();
+        }
+    }
+
+    @Override
+    public void showLoginFail(String result) {
+        if (progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        AlertDialog showDialog = new AlertDialog.Builder(getContext())
+                .setNegativeButton("确定", null)
+                .setMessage(result)
+                .create();
+        showDialog.show();
+    }
+
+    /**
+     * 给activity调用
+     *
+     * @param userName
+     * @param pwd
+     */
+    public void setValue(String userName, String pwd) {
+        etUserName.setText(userName);
+        etPwd.setText(pwd);
     }
 }

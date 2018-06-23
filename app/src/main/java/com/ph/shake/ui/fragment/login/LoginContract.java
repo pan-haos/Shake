@@ -11,8 +11,10 @@ public interface LoginContract {
 
     /**
      * 登录
+     * @param userName
+     * @param pwd
      */
-    void login();
+    void login(String userName, String pwd);
 
     /**
      * 注册

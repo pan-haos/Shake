@@ -30,8 +30,11 @@ import com.ph.shake.ui.fragment.register.RegisterFragment;
 @Presenter(LoginPresenter.class)
 public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> {
 
+    ForgetFragment forgetFragment = new ForgetFragment();
+    LoginFragment loginFragment = new LoginFragment();
+    RegisterFragment registerFragment = new RegisterFragment();
 
-    private Fragment[] fragments = new Fragment[]{new ForgetFragment(), new LoginFragment(), new RegisterFragment()};
+    private Fragment[] fragments = new Fragment[]{forgetFragment, loginFragment, registerFragment};
 
     private ViewPager viewPager;
 
@@ -86,6 +89,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> {
 
     public void transFragment(int index) {
         viewPager.setCurrentItem(index, true);
+    }
+
+    public void setValue(String userName, String pwd) {
+        loginFragment.setValue(userName, pwd);
     }
 
     @Override

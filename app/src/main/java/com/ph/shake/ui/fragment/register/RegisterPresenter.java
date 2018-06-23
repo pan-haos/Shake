@@ -1,10 +1,8 @@
 package com.ph.shake.ui.fragment.register;
 
-import android.util.Log;
-
+import com.ph.lib.mvp.Callback;
+import com.ph.lib.mvp.IModel;
 import com.ph.lib.mvp.Presenter;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * 项目： Shake
@@ -16,9 +14,22 @@ import static android.content.ContentValues.TAG;
 public class RegisterPresenter extends Presenter<IRegisterView> implements RegisterContract {
 
     @Override
-    public void register() {
-        if (isAttach()) {
-            Log.e(TAG, "register: 注册");
-        }
+    public void register(String userName, String pwd) {
+        IModel model = new RegisterModel(userName, pwd);
+        model.load(new Callback<String, String>() {
+            @Override
+            public void onSuccess(String result) {
+                if (isAttach()) {
+                    mView.get().goHome();
+                }
+            }
+
+            @Override
+            public void onFail(String result) {
+                if(isAttach()){
+                    mView.get().showFailRegister(result);
+                }
+            }
+        });
     }
 }

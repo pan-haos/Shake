@@ -9,6 +9,7 @@ package com.ph.shake.ui.fragment.register;
 
 public interface IRegisterView {
 
+    void goHome();
 
-
+    void showFailRegister(String result);
 }

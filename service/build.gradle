@@ -27,15 +27,19 @@ dependencies {
     compile project(':lib')
 
     //对glide的依赖  由于编译版本>26 需要去除yulan的库，否则会造成冲突
-    implementation ("com.github.bumptech.glide:glide:4.6.1") {
+    implementation("com.github.bumptech.glide:glide:4.6.1") {
         exclude group: "com.android.support"
     }
     implementation "com.android.support:support-fragment:26.1.0"
 
+
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
     //Retrofit gson
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
     //log 拦截器
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
     //leakcanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'

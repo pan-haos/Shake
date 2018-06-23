@@ -1,8 +1,8 @@
 package com.ph.shake.ui.fragment.login;
 
 
-import android.util.Log;
-
+import com.ph.lib.mvp.Callback;
+import com.ph.lib.mvp.IModel;
 import com.ph.lib.mvp.Presenter;
 
 
@@ -18,10 +18,26 @@ public class LoginPresenter extends Presenter<ILoginView> implements LoginContra
     private static final String TAG = LoginPresenter.class.getSimpleName();
 
     @Override
-    public void login() {
-        if (isAttach()) {
-            mView.get().goHome();
-        }
+    public void login(String userName, String pwd) {
+        IModel model = new LoginModel(userName, pwd);
+        model.load(new Callback<String,String>() {
+            @Override
+            public void onSuccess(String result) {
+                //当网络请求结束后仍然attach界面
+                if(isAttach()){
+                    mView.get().goHome();
+                }
+            }
+
+            @Override
+            public void onFail(String result) {
+                if(isAttach()){
+                    mView.get().showLoginFail(result);
+                }
+            }
+        });
+
+
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
  * 公司： TT
  * Programmer: 潘浩
  * 时间： 18-3-7
+ * 图像加载
  */
 
 public class ImageLoader {

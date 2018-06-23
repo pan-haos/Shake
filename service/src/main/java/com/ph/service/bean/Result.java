@@ -1,15 +1,18 @@
 package com.ph.service.bean;
 
+import android.support.annotation.Nullable;
+
 /**
  * 作者：潘浩
  * 项目：Shake
  * 时间：18-3-5  下午11:51
  */
-public class Bean<T> {
+public class Result<T> {
     private int code;
 
     private String message;
 
+    @Nullable
     private T content;
 
     public int getCode() {

@@ -1,5 +1,6 @@
 package com.ph.service.model;
 
+import com.ph.service.bean.Result;
 import com.ph.service.implementor.CommonImplementor;
 
 /**
@@ -11,9 +12,9 @@ import com.ph.service.implementor.CommonImplementor;
  * 正常类model
  */
 
-public abstract class HttpCommonModel<T> extends HttpModel<T> {
+public abstract class HttpCommonModel extends HttpModel<Result> {
 
     public HttpCommonModel() {
-        this.implementor = new CommonImplementor<>();
+        this.implementor = new CommonImplementor();
     }
 }

@@ -11,13 +11,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * 作者：潘浩
  * 项目：Shake
  * 时间：18-3-5  下午11:09
+ * 构建OkHttp基本配置和Retrofit单例
  */
 public class ApiService {
 
     private static final ApiService API_SERVICE = new ApiService();
-
-    private static final String IP = "http://192.168.1.101:80";
-
+    //http://119.29.175.200:8080
+    private static final String IP = "http://192.168.0.110:8080/shake/";
     private Api Api;
 
     private ApiService() {
@@ -26,7 +26,7 @@ public class ApiService {
          * 添加OkHttp log日志拦截器
          */
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         /**
          * 构建OkHttp Client
          */

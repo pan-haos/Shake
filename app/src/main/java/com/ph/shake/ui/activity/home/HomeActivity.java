@@ -143,7 +143,7 @@ public class HomeActivity extends BaseActivity<HomePresenter, IHomeView> impleme
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
         myLocationStyle.radiusFillColor(R.color.primary);
 
-        CameraUpdate mCameraUpdate = CameraUpdateFactory.zoomTo(19);//设置地图缩放级别  从1～19
+        CameraUpdate mCameraUpdate = CameraUpdateFactory.zoomTo(15);//设置地图缩放级别  从1～19
         map = mapView.getMap();//延时加载先定位完毕再加载map信息
         map.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
         map.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。

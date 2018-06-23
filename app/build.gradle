@@ -6,13 +6,14 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     signingConfigs {
-        config {
+        release {
             keyAlias 'shake_key'
             keyPassword 'ph940919'
-            storeFile file('/home/panhao/Android Sign/shake.jks')
+            storeFile file('/home/panhao/keystore/shake.jks')
             storePassword 'ph940919'
         }
     }
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.ph.shake"
@@ -21,10 +22,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.config
         ndk {
-            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）"x86","x86_64"
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "arm64-v8a"
         }
     }
     buildTypes {
@@ -33,13 +33,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
     }
     productFlavors {
     }
-
-
 }
 
 dependencies {
@@ -51,15 +49,12 @@ dependencies {
     compile project(':service')
     // 引入ButterKnife 注解库
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     //3D地图so及jar
     compile 'com.amap.api:3dmap:latest.integration'
     //定位功能
     compile 'com.amap.api:location:latest.integration'
     //搜索功能
     compile 'com.amap.api:search:latest.integration'
-
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'

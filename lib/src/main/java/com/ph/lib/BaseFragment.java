@@ -7,12 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import com.ph.lib.injector.PresenterInjector;
 import com.ph.lib.injector.ViewInjector;
 import com.ph.lib.mvp.IPresenter;
-
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -55,6 +53,7 @@ public class BaseFragment<T extends IPresenter<V>, V> extends Fragment {
 
     /**
      * 第一次view为空时加载
+     * 如果只在第一次加载时调用重写该方法
      *
      * @param view
      */
@@ -63,7 +62,7 @@ public class BaseFragment<T extends IPresenter<V>, V> extends Fragment {
 
     /**
      * 缓存onCreateView时加载
-     *
+     * 如果每次界面刷新时都要调用重写该方法
      * @param view
      */
     private void refreshInit(View view) {
@@ -79,7 +78,7 @@ public class BaseFragment<T extends IPresenter<V>, V> extends Fragment {
             Log.e(TAG, "onDestroy: 内存缓存移除了" + name);
             Cache.remove(name);
         }
-        //移除Butterknife绑定
+        //移除ButterKnife绑定关系
         if (unbinder != null) {
             unbinder.unbind();
         }

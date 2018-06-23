@@ -1,7 +1,7 @@
 package com.ph.service.model;
 
-import com.ph.service.bean.Bean;
-import com.ph.service.implementor.CommonImplementor;
+import com.ph.service.bean.Result;
+import com.ph.service.implementor.BeanImplementor;
 
 /**
  * 作者：潘浩
@@ -12,10 +12,10 @@ import com.ph.service.implementor.CommonImplementor;
  * <p>
  * 直接使用BeanImplementor 做桥接
  */
-public abstract class HttpBeanModel<T> extends HttpModel<Bean<T>> {
+public abstract class HttpBeanModel<T> extends HttpModel<Result<T>> {
 
     public HttpBeanModel() {
-        this.implementor = new CommonImplementor<>();
+        this.implementor = new BeanImplementor<>();
     }
 
 }

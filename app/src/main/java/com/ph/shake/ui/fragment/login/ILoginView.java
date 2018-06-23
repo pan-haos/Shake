@@ -11,4 +11,5 @@ public interface ILoginView {
 
     void goHome();
 
+    void showLoginFail(String result);
 }

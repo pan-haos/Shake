@@ -1,6 +1,8 @@
 package com.ph.shake.ui.fragment.register;
 
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
@@ -13,9 +15,6 @@ import com.ph.lib.injector.Presenter;
 import com.ph.shake.R;
 import com.ph.shake.ui.activity.login.LoginActivity;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import butterknife.OnClick;
 
 /**
@@ -26,11 +25,7 @@ import butterknife.OnClick;
  */
 @LayoutId(R.layout.fragment_register)
 @Presenter(RegisterPresenter.class)
-public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterView> {
-    // 邮箱的正则表达式
-    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9#_~!$&'()*+,;=:.\"(),:;<>@\\[\\]\\\\]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*$";
-    private Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-    private Matcher matcher;
+public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterView> implements IRegisterView {
 
     TextInputLayout userNameWrapper;
 
@@ -39,6 +34,8 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterV
     EditText etUserName;
 
     EditText etPwd;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void firstInit(View view) {
@@ -53,9 +50,9 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterV
         hideKeyboard();
         String userName = etUserName.getText().toString();
         String pwd = etPwd.getText().toString();
-        //email 校验不通过
-        if (!isEmail(userName)) {
-            userNameWrapper.setError("用户名非邮箱");
+        //用户名 校验不通过
+        if (!isUserName(userName)) {
+            userNameWrapper.setError("用户名长度需要大于6位");
         } else {
             userNameWrapper.setErrorEnabled(false);
         }
@@ -67,10 +64,17 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterV
             pwdWrapper.setErrorEnabled(false);
         }
 
-        //校验均通过
-        if (isEmail(userName) && isPwd(pwd)) {
-
+        //校验均通过 presenter连接
+        if (isUserName(userName) && isPwd(pwd)) {
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("加载中...");
+            progressDialog.show();
+            mPresenter.register(userName, pwd);
         }
+    }
+
+    private boolean isUserName(String userName) {
+        return userName.trim().toString().length() >= 6;
     }
 
     @OnClick(R.id.register_login_account)
@@ -85,11 +89,6 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterV
         activity.transFragment(0);
     }
 
-
-    public boolean isEmail(String email) {
-        matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
 
     public boolean isPwd(String pwd) {
         return pwd.trim().length() >= 6;
@@ -106,4 +105,26 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, IRegisterV
         }
     }
 
+    @Override
+    public void goHome() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        //切换到登录界面的fragment
+        LoginActivity activity = (LoginActivity) getActivity();
+        activity.transFragment(1);
+        activity.setValue(etUserName.getText().toString().trim(), etPwd.getText().toString().trim());
+    }
+
+    @Override
+    public void showFailRegister(String result) {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        AlertDialog showDialog = new AlertDialog.Builder(getContext())
+                .setNegativeButton("确定", null)
+                .setMessage(result)
+                .create();
+        showDialog.show();
+    }
 }
